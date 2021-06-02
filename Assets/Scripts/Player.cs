@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //public or private reference
-    //data types (int, float, bool, string)
-    //every value has a name
-    //optional value assigned
     [SerializeField]
     private float _speed = 3.5f;
+    [SerializeField]
+    private GameObject _laserPrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +23,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+
+        //When player hits the space key
+        //Spawn gameObject
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+         
+        }
     }
 
     void CalculateMovement()
