@@ -22,8 +22,23 @@ public class Enemy : MonoBehaviour
         //Respawn at the top with new random x position. 
         if (transform.position.y <= -5.94f) 
         {
-            transform.position = new Vector3(Random.Range(-9.46f, 9.46f), 5.94f, 0);
+            float randomX = Random.Range(-9.46f, 9.46f);
+            transform.position = new Vector3(randomX, 5.94f, 0);
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Destroy(this.gameObject);
+        }
+
+        if (other.tag == "Laser")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }
