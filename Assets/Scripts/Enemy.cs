@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.y <= -5.94f) 
         {
-            float randomX = Random.Range(-9.46f, 9.46f);
+            float randomX = Random.Range(-9.4f, 9.4f);
             transform.position = new Vector3(randomX, 5.94f, 0);
         }
     }
@@ -27,13 +27,17 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Player player = other.transform.GetComponent<Player>();
-
-            if(player != null)
+            if (other.tag == "Player")
             {
-                player.Damage();
+                Player player = other.transform.GetComponent<Player>();
+
+                if(player != null)
+                {
+                    player.Damage();
+                }
+                
+                Destroy(this.gameObject);
             }
-            Destroy(this.gameObject);
         }
 
         if (other.tag == "Laser")
